@@ -35,38 +35,17 @@ if (navigator.geolocation) {
     var i;
 		for (i=0; i<10; i++)
 		{
-    var entity = document.createElement('a-box');
+    		var entity = document.createElement('a-box');
 		scene.appendChild(entity);
-		entity.setAttribute('gps-entity-place', (10-2*i) + ' 0.5 -7');
+		entity.setAttribute('gps-entity-place', 'latitude: ' + (position.coords.latitude+0.00003) + '; longitude: ' +  (position.coords.longitude0 - 0.00012 + i*0.00003) + ';');
 		entity.setAttribute('color', 'green');
-  do_something(position.coords.latitude, position.coords.longitude);
-    }
+                //do_something(position.coords.latitude, position.coords.longitude);
+    		}
+  	} else
+	{ 
+    		document.title = "Geolocation is not supported by this browser.";
+  	}
     });
-  } else { 
-    document.title = "Geolocation is not supported by this browser.";
-  }
-		var i;
-		for (i=0; i<10; i++)
-		{
-		var entity = document.createElement('a-box');
-		scene.appendChild(entity);
-		entity.setAttribute('gps-entity-place', (10-2*i) + ' 0.5 -7');
-		entity.setAttribute('color', 'green');
-		}
-var x = document.getElementById("demo");
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
-}
 </script>
 
 </body>

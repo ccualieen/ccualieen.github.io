@@ -1,0 +1,30 @@
+<html>
+<head>
+  <title>My A-Frame Scene</title>
+  <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+  <script>
+  AFRAME.registerComponent('navigate-on-click', {
+      schema: {default: ''},
+
+      init: function () {
+        var url = this.data;
+        this.el.addEventListener('click', function () {
+        window.location.href = url;
+      });
+     }
+     });
+  </script>
+</head>
+<!-- Ref: https://stackoverflow.com/questions/49018866/need-help-creating-links-to-other-web-pages-in-aframe -->
+<body>
+  <a-scene>
+    <a-triangle position="-3 3.0 -3 " color="#f00" shadow="" rotation="" scale="" visible="" material="" geometry="" navigate-on-click="triangle.png"></a-triangle>
+   
+ <a-circle position="0 3.0 -3 " color="green" shadow="" rotation="" scale="" visible="" material="" geometry="" navigate-on-click="circle.png"></a-circle>
+
+  <a-image src="rectangle.png" position="3 3.0 -3" rotation="0 0 0" scale="2 1 1" navigate-on-click="rectangle.png></a-image> 
+
+<a-camera look-controls cursor="rayOrigin: mouse"><a-      cursor></a-cursor></a-camera>
+  </a-scene>
+</body>
+</html>

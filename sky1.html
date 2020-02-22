@@ -4,25 +4,31 @@
 	<head>
 	<script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
 	<!-- include ar.js for aframe -->
+
+<script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+  
+<script>
+  AFRAME.registerComponent('navigate-on-click', {
+      schema: {default: ''},
+
+      init: function () {
+        var url = this.data;
+        this.el.addEventListener('click', function () {
+        window.location.href = url;
+      });
+     }
+     });
+  </script>
 	</head>
 
  <body>
   <a-scene>
-
-<a-link href="http://192.168.1.16/sky2.html">\<\img src="book.png">\</a>
-
-
-<a-image src="book.png" position="-10 -1 32"  rotation="20 120 0" scale="6 3 3"></a-image>    
-   <a-camera look-controls cursor="rayOrigin: mouse"><a-cursor></a-cursor></a-camera>
-
-
-
-
-<a-image src="price1.png" position="0 -1 -5" rotation="0 40 -10" scale="2 1 1"></a-image>
  
-
+<a-image src="price1.png" position="6 3 -5" rotation="0 0 0" scale="4 2 2"></a-image>
+ 
    
-    <a-sky src="R0011104.jpg"></a-sky>
+    
+<a-sky src="R0011104.jpg"></a-sky>
 
   </a-scence>
  </body>

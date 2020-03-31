@@ -1,4 +1,4 @@
-﻿<html>
+<html>
 	<head>
 <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
 <!-- include ar.js for aframe -->
@@ -12,10 +12,36 @@
 	</head>
 <body style='margin: 0px; overflow: hidden;'>
 	<a-scene embedded arjs='sourceType: webcam;'>
-	  <a-image src="r1.png" gps-entity-place="latitude: 24.887200; longitude: 121.169336;"  width="2" height="2" position="0 0 0" rotation="0 30 0"></a-image>
-          <a-image src="r2.png" gps-entity-place="latitude: 24.887145; longitude: 121.168750;"  width="2" height="2" position="0 0 0" rotation="0 30 0"></a-image>
-          <a-image src="tv.png" gps-entity-place="latitude: 24.886904; longitude: 121.168938;"  width="2" height="2" position="0 0 0" rotation="0 30 0"></a-image>
-          <a-camera id="camera" user-height="1.6" gps-camera-position gps-camera-rotation gps-camera-debug></a-camera>
+		<a-image src="tv.png" gps-entity-place="latitude: 24.887069; longitude: 121.1690193;"  width="2" height="2" position="0 0 0" rotation="0 30 0"></a-image>
+		<a-image src="tv.png" gps-entity-place="latitude: 24.887065; longitude: 121.1690193;"  width="2" height="2" position="0 0 0" rotation="0 30 0"></a-image>
+		<!-- 121.1690193, 24.8870671 -->
+
+		<a-camera id="camera" user-height="1.6" gps-camera-position gps-camera-rotation gps-camera-debug></a-camera>
 	</a-scene>
+	<script>
+
+    var s1 = document.getElementsByTagName("a-scene");
+	  if (navigator.geolocation) {
+	    navigator.geolocation.getCurrentPosition(showPosition);
+	  } else {
+	    document.title = "Geolocation is not supported by this browser.";
+	  }
+
+
+	function showPosition(position) {
+	  document.title = "Latitude: " + position.coords.latitude +
+	  "<br>Longitude: " + position.coords.longitude + "<br/>";
+		var a1 = document.createElement("a-cylinder");
+		a1.setAttribute("src", "scale.jpg");
+		a1.setAttribute("position", "0 1.6 0");
+		a1.setAttribute("scale", "1 2 1");
+		a1.setAttribute("open-ended", "true");
+		a1.setAttribute("radius", "10");
+		a1.setAttribute("side", "double");
+		a1.setAttribute("gps-entity-place", "latitude:" + (position.coords.latitude) +
+		 "; longitude: " + position.coords.longitude + ";");
+		s1[0].appendChild(a1);
+	}
+	</script>
 </body>
 </html>

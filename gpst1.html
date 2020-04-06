@@ -12,10 +12,60 @@
 	</head>
 <body style='margin: 0px; overflow: hidden;'>
 	<a-scene embedded arjs='sourceType: webcam;'>
-		<a-image src="West.png" gps-entity-place="latitude: 25.055961099999998; longitude: 121.3655978;"  width="12" height="12" position="0 0 0" rotation="0 30 0"></a-image>
-		<a-image src="East.png" gps-entity-place="latitude: 25.055961099999998; longitude: 121.3655778;"  width="12" height="12" position="0 0 0" rotation="0 30 0"></a-image>
-		<a-image src="North.png" gps-entity-place="latitude: 25.056261099999998; longitude: 121.3655878;"  width="12" height="12" position="0 0 0" rotation="0 30 0"></a-image>
-		<a-image src="South.png" gps-entity-place="latitude: 25.055661099999998; longitude: 121.3655878;"  width="12" height="12" position="0 0 0" rotation="0 30 0"></a-image>
-		<a-camera id="camera" user-height="1.6" gps-camera-position gps-camera-rotation></a-camera>
+
+		<a-camera id="camera" user-height="1.6" gps-camera-position gps-camera-rotation gps-camera-debug></a-camera>
 	</a-scene>
+	<script>
+
+    var s1 = document.getElementsByTagName("a-scene");
+	  if (navigator.geolocation) {
+	    navigator.geolocation.getCurrentPosition(showPosition);
+	  } else {
+	    document.title = "Geolocation is not supported by this browser.";
+	  }
+
+	function showPosition(position) {
+	  //document.title = "Latitude: " + position.coords.latitude +
+	  //"<br>Longitude: " + position.coords.longitude + "<br/>";
+		// http://wp.mlab.tw/?p=2200
+		// Latitude: 1 deg = 110.574 km  5m = 1/(110.574*20) = 0.00045219
+    // Longitude: 1 deg = 111.320*cos(latitude) km 5m= 1/111.32/0.905../20 = 0.00049591
+		// cos(25.08) = 0.90571681737
+		var x,y, dx,dy;
+		y = position.coords.longitude;
+		x = position.coords.latitude;
+    dx = 0.00045219;
+		dy = 0.00049591;
+		//var ent = document.createElement("a-entity");
+		//ent.setAttribute("gps-entity-place", "latitude:" + (x) + "; longitude: " + (y));
+
+		//North
+		var a1 = document.createElement("a-image");
+		a1.setAttribute("src", "North.png");
+		//a2.setAttribute("rotation", "0 90 0");
+		a1.setAttribute("gps-entity-place", "latitude:" + (x) + "; longitude: " + (y+dy));
+		a1.setAttribute("scale", "5 5 5");
+		s1[0].appendChild(a1);
+		//South
+		var a2 = document.createElement("a-image");
+		a2.setAttribute("src", "South.png");
+		//a2.setAttribute("rotation", "0 90 0");
+		a2.setAttribute("gps-entity-place", "latitude:" + (x) + "; longitude: " + (y-dy));
+		a2.setAttribute("scale", "5 5 5");
+		s1[0].appendChild(a2);
+		// East
+		var a3 = document.createElement("a-image");
+		a3.setAttribute("src", "East.png");
+		a3.setAttribute("gps-entity-place", "latitude:" + (x+dx) + "; longitude: " + (y));
+		a3.setAttribute("scale", "5 5 5");
+		s1[0].appendChild(a3);
+		// West
+		var a4 = document.createElement("a-image");
+		a4.setAttribute("src", "West.png");
+		a4.setAttribute("gps-entity-place", "latitude:" + (x-dx) + "; longitude: " + (y));
+		a4.setAttribute("scale", "5 5 5");
+		s1[0].appendChild(a4);
+	}
+	</script>
 </body>
+</html>

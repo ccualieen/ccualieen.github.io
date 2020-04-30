@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<meta charset="utf-8"/>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <head>
+<body style='margin : 0px; overflow: hidden;'>
+  <a-scene>
+
+			<a-cylinder src="ten.png" position="-4 1.6 -6" rotation="90 0 0" height="0.1"></a-cylinder>
+			<a-text value="X" scale="5 5 5" position="-2 1.6 -6" color="red"></a-text>
+			<a-entity id="out1" position="4 3 -6">
+			</a-entity>
+	<a-camera>
+			<a-cursor></a-cursor>
+		</a-camera>
+  </a-scene>
+	<script>
+	/*
+  var sh1 = ["a-triangle","a-circle", "a-plane", "a-tetrahedron", "a-cone", "a-sphere",
+             "a-octahedron","a-dodecahedron"];
+	var colors = ["red", "orange", "yellow", "green", "blue", "indigo", "purple", "gray"];
+	var ans =["三角形", "圓形", "四邊形", "四面體", "圓錐", "圓球", "八面體", "十二面體", "十二面體"];
+	var shobj =[];
+	AFRAME.registerComponent('click1', {
+	  schema: {type: 'string'},
+	  init: function () {
+	    var stringToalert = this.data;
+	    alert(stringToalert);
+	  }
+	});
+	*/
+	var s1 = document.getElementsByTagName("a-scene");
+  var i;
+	var b1 = [];
+	for (i=1; i<5; i++)
+	{
+		 b1[i] = document.createElement("a-text");
+		 b1[i].setAttribute("value", i);
+		 b1[i].setAttribute("position", "1 " + (4 - i*1.5) + " -6");
+		 b1[i].setAttribute("scale","5 5 5");
+		 b1[i].setAttribute("color", "green");
+		 b1[i].setAttribute("id", i);
+		 b1[i].addEventListener('click', function (evt) {
+	 	  var en1 = document.getElementById("out1");
+			var ii = parseInt(this.id);
+			en1.removeChild(en1.childNodes[0]);
+			var j;
+			for (j=0; j<ii; j++)
+			{
+				//<a-cylinder src="ten.png" position="-4 1.6 -6" rotation="90 0 0" height="0.1"></a-cylinder>
+				var c1 = document.createElement("a-cylinder");
+				c1.setAttribute("src", "ten.png");
+				c1.setAttribute("rotation", "90 0 0");
+				c1.setAttribute("height", "0.1");
+				c1.setAttribute("position", "0 " + (1-j*2) + " 0");
+				en1.appendChild(c1);
+			}
+	 		 });
+		 s1[0].appendChild(b1[i]);
+	}
+	/*
+	shobj[i] = document.createElement(sh1[i]);
+  shobj[i].setAttribute("color", colors[i]);
+  shobj[i].setAttribute("position", (-5 + (i % 4)*2.5) + " " + (2 - Math.floor(i/4)*2.5) + " -4");
+	shobj[i].setAttribute("id", ans[i]);
+	shobj[i].addEventListener('click', function (evt) {
+	  alert(this.id);;
+		 });
+	s1[0].appendChild(shobj[i]);
+  }
+	*/
+  </script>
+</body>
+</html>

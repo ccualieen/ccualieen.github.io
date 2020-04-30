@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<meta charset="utf-8"/>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <head>
+<body style='margin : 0px; overflow: hidden;'>
+  <a-scene>
+		<a-camera>
+			<a-cursor></a-cursor>
+		</a-camera>
+  </a-scene>
+	<script>
+  var sh1 = ["a-triangle","a-circle", "a-plane", "a-tetrahedron", "a-cone", "a-sphere",
+             "a-octahedron","a-dodecahedron"];
+	var colors = ["red", "orange", "yellow", "green", "blue", "indigo", "purple", "gray"];
+	var ans =["三角形", "圓形", "四邊形", "四面體", "圓錐", "圓球", "八面體", "十二面體", "十二面體"];
+	var shobj =[];
+	AFRAME.registerComponent('click1', {
+	  schema: {type: 'string'},
+	  init: function () {
+	    var stringToalert = this.data;
+	    alert(stringToalert);
+	  }
+	});
+	var s1 = document.getElementsByTagName("a-scene");
+  var i,j;
+	for (i=0; i<8; i++)
+	{
+	shobj[i] = document.createElement(sh1[i]);
+  shobj[i].setAttribute("color", colors[i]);
+  shobj[i].setAttribute("position", (-5 + (i % 4)*2.5) + " " + (2 - Math.floor(i/4)*2.5) + " -4");
+	shobj[i].setAttribute("id", ans[i]);
+	shobj[i].addEventListener('click', function (evt) {
+	  alert(this.id);;
+		 });
+	s1[0].appendChild(shobj[i]);
+  }
+  </script>
+</body>
+</html>

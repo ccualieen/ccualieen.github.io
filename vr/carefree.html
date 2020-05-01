@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<meta charset="utf-8"/>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <head>
+<body style='margin : 0px; overflow: hidden;'>
+  <a-scene>
+		<a-entity id="out1" position="-5 7 -10">
+		</a-entity>
+		<a-text value="橘子二十元(個)"
+			 position="-2 1.2 -2"
+			 font="custom-msdf.json"
+			 font-image="custom.png"
+			 color="#0F0FFF"
+			 negate="false">
+		 </a-text>
+		<a-text value="柳丁四十元(斤)"
+		    position="-0.5 1.2 -2"
+        font="custom-msdf.json"
+				font-image="custom.png"
+        color="#0F0FFF"
+        negate="false">
+     </a-text>
+ 		 <a-text value="蘋果五十元(個)"
+			    position="1.5 1.2 -2"
+	        font="custom-msdf.json"
+					font-image="custom.png"
+	        color="#0F0FFF"
+	        negate="false">
+	     </a-text>
+		<a-sky src="carefree.jpg" rotation="0 -40 10"></a-sky>
+		<a-camera>
+			<a-cursor></a-cursor>
+		</a-camera>
+  </a-scene>
+	<script>
+	var txt = document.getElementsByTagName("a-text");
+	var v=[2,3,5];
+	for (i=0; i<txt.length; i++)
+	{
+	txt[i].setAttribute("id", v[i]);
+	txt[i].addEventListener('click', function (evt) {
+		var en1 = document.getElementById("out1");
+		var ii = parseInt(this.id);
+		en1.removeChild(en1.childNodes[0]);
+		var j;
+		for (j=0; j<ii; j++)
+		{
+			//<a-cylinder src="ten.png" position="-4 1.6 -6" rotation="90 0 0" height="0.1"></a-cylinder>
+			var c1 = document.createElement("a-cylinder");
+			c1.setAttribute("src", "ten.png");
+			c1.setAttribute("rotation", "90 0 0");
+			c1.setAttribute("height", "0.1");
+			c1.setAttribute("position", (j*2) + " 0 0");
+			en1.appendChild(c1);
+	  }
+	 });
+  }
+</script>
+</body>
+</html>
